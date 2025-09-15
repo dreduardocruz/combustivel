@@ -60,11 +60,13 @@ Para empacotar o aplicativo para Android localmente, você precisará do Buildoz
 pip install buildozer
 ```
 
-Edite o arquivo buildozer.spec conforme necessário e execute:
+Use o arquivo buildozer.local.spec fornecido (que já está configurado corretamente):
 
 ```bash
-buildozer -v android debug
+buildozer -v android debug -f buildozer.local.spec
 ```
+
+O arquivo buildozer.local.spec já contém as configurações otimizadas para Android API 33 e outras melhorias para garantir uma compilação bem-sucedida.
 
 #### Opção 2: Compilação automática com GitHub Actions
 
