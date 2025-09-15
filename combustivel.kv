@@ -1,0 +1,305 @@
+#:kivy 2.1.0
+
+<CustomButton@Button>:
+    font_size: '18sp'
+    background_normal: ''
+    background_color: 0.2, 0.6, 1, 1
+    color: 1, 1, 1, 1
+    size_hint_y: None
+    height: dp(50)
+    border_radius: [10]
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(10)]
+
+<CustomTextInput@TextInput>:
+    multiline: False
+    font_size: '18sp'
+    padding: [10, 10, 10, 10]
+    size_hint_y: None
+    height: dp(50)
+    background_color: 0.95, 0.95, 0.95, 1
+    foreground_color: 0.1, 0.1, 0.1, 1
+    cursor_color: 0.2, 0.6, 1, 1
+
+<CustomLabel@Label>:
+    font_size: '18sp'
+    color: 0.1, 0.1, 0.1, 1
+    size_hint_y: None
+    height: dp(40)
+    text_size: self.width, None
+    halign: 'left'
+
+<ResultadoLabel@Label>:
+    font_size: '22sp'
+    color: 0.2, 0.6, 0.2, 1
+    size_hint_y: None
+    height: dp(80)
+    halign: 'center'
+    valign: 'middle'
+    canvas.before:
+        Color:
+            rgba: 0.95, 0.95, 0.95, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(10)]
+
+<MenuButton@Button>:
+    font_size: '16sp'
+    background_normal: ''
+    background_color: 0.2, 0.6, 1, 1
+    color: 1, 1, 1, 1
+    size_hint_y: None
+    height: dp(60)
+    border_radius: [10]
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(10)]
+
+<GerenciadorTelas>:
+    TelaCalculoCombustivel:
+        name: 'calculo_combustivel'
+    TelaConsumoMedio:
+        name: 'consumo_medio'
+    TelaEstimativaGastos:
+        name: 'estimativa_gastos'
+
+<TelaCalculoCombustivel>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(15)
+        
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: [0, 0, 0, 10]
+            
+            Label:
+                text: 'Calculadora de Combustível'
+                font_size: '24sp'
+                color: 0.2, 0.6, 1, 1
+                bold: True
+        
+        CustomLabel:
+            text: 'Preço da Gasolina (R$):'
+        
+        CustomTextInput:
+            id: preco_gasolina
+            hint_text: 'Ex: 5.79'
+            input_filter: 'float'
+            input_type: 'number'
+        
+        CustomLabel:
+            text: 'Preço do Etanol (R$):'
+        
+        CustomTextInput:
+            id: preco_etanol
+            hint_text: 'Ex: 3.99'
+            input_filter: 'float'
+            input_type: 'number'
+        
+        ResultadoLabel:
+            text: root.resultado
+            size_hint_y: None
+            height: dp(100) if root.resultado else dp(0)
+            opacity: 1 if root.resultado else 0
+        
+        Widget:
+            size_hint_y: 0.5
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+            
+            CustomButton:
+                text: 'Calcular'
+                on_release: root.calcular_melhor_combustivel()
+            
+            CustomButton:
+                text: 'Limpar'
+                background_color: 0.8, 0.2, 0.2, 1
+                on_release: root.limpar_campos()
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(70)
+            spacing: dp(10)
+            padding: [0, 20, 0, 0]
+            
+            MenuButton:
+                text: 'Cálculo de\nConsumo Médio'
+                on_release: app.root.current = 'consumo_medio'
+            
+            MenuButton:
+                text: 'Estimativa\nde Gastos'
+                on_release: app.root.current = 'estimativa_gastos'
+
+<TelaConsumoMedio>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(15)
+        
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: [0, 0, 0, 10]
+            
+            Label:
+                text: 'Cálculo de Consumo Médio'
+                font_size: '24sp'
+                color: 0.2, 0.6, 1, 1
+                bold: True
+        
+        CustomLabel:
+            text: 'Quilômetros Percorridos:'
+        
+        CustomTextInput:
+            id: km_percorridos
+            hint_text: 'Ex: 350'
+            input_filter: 'float'
+            input_type: 'number'
+        
+        CustomLabel:
+            text: 'Litros Consumidos:'
+        
+        CustomTextInput:
+            id: litros_consumidos
+            hint_text: 'Ex: 28.5'
+            input_filter: 'float'
+            input_type: 'number'
+        
+        ResultadoLabel:
+            text: root.resultado_consumo
+            size_hint_y: None
+            height: dp(100) if root.resultado_consumo else dp(0)
+            opacity: 1 if root.resultado_consumo else 0
+        
+        Widget:
+            size_hint_y: 0.5
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+            
+            CustomButton:
+                text: 'Calcular'
+                on_release: root.calcular_consumo()
+            
+            CustomButton:
+                text: 'Limpar'
+                background_color: 0.8, 0.2, 0.2, 1
+                on_release: root.limpar_campos()
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(70)
+            spacing: dp(10)
+            padding: [0, 20, 0, 0]
+            
+            MenuButton:
+                text: 'Calculadora\nde Combustível'
+                on_release: app.root.current = 'calculo_combustivel'
+            
+            MenuButton:
+                text: 'Estimativa\nde Gastos'
+                on_release: app.root.current = 'estimativa_gastos'
+
+<TelaEstimativaGastos>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(15)
+        
+        BoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            padding: [0, 0, 0, 10]
+            
+            Label:
+                text: 'Estimativa de Gastos'
+                font_size: '24sp'
+                color: 0.2, 0.6, 1, 1
+                bold: True
+        
+        CustomLabel:
+            text: 'Distância a Percorrer (km):'
+        
+        CustomTextInput:
+            id: distancia
+            hint_text: 'Ex: 500'
+            input_filter: 'float'
+            input_type: 'number'
+        
+        CustomLabel:
+            text: 'Consumo Médio (km/L):'
+        
+        CustomTextInput:
+            id: consumo_medio
+            hint_text: 'Ex: 12.5'
+            input_filter: 'float'
+            input_type: 'number'
+        
+        CustomLabel:
+            text: 'Preço do Combustível (R$):'
+        
+        CustomTextInput:
+            id: preco_combustivel
+            hint_text: 'Ex: 5.79'
+            input_filter: 'float'
+            input_type: 'number'
+        
+        ResultadoLabel:
+            text: root.resultado_estimativa
+            size_hint_y: None
+            height: dp(100) if root.resultado_estimativa else dp(0)
+            opacity: 1 if root.resultado_estimativa else 0
+        
+        Widget:
+            size_hint_y: 0.5
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+            
+            CustomButton:
+                text: 'Calcular'
+                on_release: root.calcular_estimativa()
+            
+            CustomButton:
+                text: 'Limpar'
+                background_color: 0.8, 0.2, 0.2, 1
+                on_release: root.limpar_campos()
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(70)
+            spacing: dp(10)
+            padding: [0, 20, 0, 0]
+            
+            MenuButton:
+                text: 'Calculadora\nde Combustível'
+                on_release: app.root.current = 'calculo_combustivel'
+            
+            MenuButton:
+                text: 'Cálculo de\nConsumo Médio'
+                on_release: app.root.current = 'consumo_medio'

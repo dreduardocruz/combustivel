@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Fundo do ícone -->
+  <circle cx="256" cy="256" r="256" fill="#3498db" />
+  
+  <!-- Bomba de combustível -->
+  <g fill="#ffffff">
+    <!-- Base da bomba -->
+    <rect x="156" y="300" width="200" height="120" rx="10" />
+    
+    <!-- Topo da bomba -->
+    <rect x="186" y="180" width="140" height="120" rx="10" />
+    
+    <!-- Mangueira -->
+    <path d="M326 220 C380 220, 380 150, 350 150 L350 180 L326 180 Z" />
+    
+    <!-- Bico da mangueira -->
+    <rect x="350" y="130" width="30" height="50" rx="5" />
+    
+    <!-- Visor da bomba -->
+    <rect x="206" y="200" width="100" height="60" rx="5" fill="#3498db" />
+    
+    <!-- Texto no visor -->
+    <text x="256" y="240" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#ffffff">70%</text>
+    
+    <!-- Botões da bomba -->
+    <circle cx="226" y="290" r="10" fill="#e74c3c" />
+    <circle cx="256" y="290" r="10" fill="#2ecc71" />
+    <circle cx="286" y="290" r="10" fill="#f1c40f" />
+  </g>
+  
+  <!-- Gotas de combustível -->
+  <g fill="#f1c40f">
+    <path d="M365 190 L375 210 L355 210 Z" />
+    <path d="M365 220 L375 240 L355 240 Z" />
+  </g>
+</svg>
