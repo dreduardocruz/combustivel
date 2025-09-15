@@ -50,16 +50,14 @@ python main.py
 
 ### Empacotando para Android
 
-Para empacotar o aplicativo para Android, você precisará do Buildozer:
+Existem duas maneiras de gerar o APK para Android:
+
+#### Opção 1: Compilação local com Buildozer
+
+Para empacotar o aplicativo para Android localmente, você precisará do Buildozer:
 
 ```bash
 pip install buildozer
-```
-
-Crie um arquivo buildozer.spec:
-
-```bash
-buildozer init
 ```
 
 Edite o arquivo buildozer.spec conforme necessário e execute:
@@ -67,6 +65,16 @@ Edite o arquivo buildozer.spec conforme necessário e execute:
 ```bash
 buildozer -v android debug
 ```
+
+#### Opção 2: Compilação automática com GitHub Actions
+
+O projeto está configurado para compilar automaticamente o APK usando GitHub Actions.
+
+1. Faça push das alterações para o GitHub
+2. O APK será gerado automaticamente
+3. Acesse a aba "Actions" no GitHub para baixar o APK
+
+Para mais detalhes, consulte [docs/ANDROID_BUILD.md](docs/ANDROID_BUILD.md).
 
 ### Empacotando para iOS
 
