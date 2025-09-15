@@ -36,8 +36,8 @@ pip install kivy[base,media,tuio]
 ### Clonando o repositório
 
 ```bash
-git clone [URL_DO_REPOSITÓRIO]
-cd calculadora-combustivel
+git clone https://github.com/dreduardocruz/combustivel.git
+cd combustivel
 ```
 
 ## Executando o aplicativo
